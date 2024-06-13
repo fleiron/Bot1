@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-App: Planet Coins</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .planet-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .coin-count {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .leaderboard {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .leaderboard-item {
+            margin-bottom: 5px;
+        }
+        .buy-coins {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Planet Coins!</h1>
+        <img class="planet-image" src="planet-coins.png" alt="Planet Coins">
+        <div class="coin-count">Coins: <span id="coin-count">0</span></div>
+        
+        <div class="leaderboard">
+            <h2>Leaderboard</h2>
+            <ol id="leaderboard-list">
+                <!-- Leaderboard items will be dynamically populated here -->
+            </ol>
+        </div>
+        
+        <div class="buy-coins">
+            <h2>Buy Coins</h2>
+            <p>1 USD = 10 Coins</p>
+            <button id="buy-button" onclick="buyCoins()">Buy 10 Coins for $1</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript logic for buying coins and updating UI
+        let coinCount = 0; // This should be fetched from backend or initialized
+
+        function updateCoinCount() {
+            document.getElementById('coin-count').textContent = coinCount;
+        }
+
+        function updateLeaderboard(leaderboardData) {
+            const leaderboardList = document.getElementById('leaderboard-list');
+            leaderboardList.innerHTML = '';
+            leaderboardData.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.username}: ${item.coins} Coins`;
+                leaderboardList.appendChild(li);
+            });
+        }
+
+        function buyCoins() {
+            // Logic for purchasing coins (to be implemented)
+            // This involves integrating with payment gateway and updating backend
+            // For now, let's simulate adding coins
+            coinCount += 10;
+            updateCoinCount();
+        }
+
+        // Initially update UI with fetched data
+        updateCoinCount();
+        updateLeaderboard([
+            { username: 'User1', coins: 50 },
+            { username: 'User2', coins: 30 },
+            { username: 'User3', coins: 20 }
+        ]);
+    </script>
+</body>
+</html>
